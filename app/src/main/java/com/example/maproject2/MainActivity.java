@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -33,55 +34,49 @@ public class MainActivity extends AppCompatActivity {
 
         this.spinnerwcount = (Spinner) findViewById(R.id.spinnerwcount);
         this.getcount =  findViewById(R.id.getcount);
-        this.inputresults = findViewById(R.id.FinalResults);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.countarray_array, android.R.layout.simple_spinner_item);
+        this.inputresults = findViewById(R.id.wordcount);
 
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.countarray_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerwcount.setAdapter(adapter);
     }
-    public void onBtnclick(View view){
-        if (getcount.getText().toString()==null || getcount.getText().toString().trim().equals("")){
-            Toast.makeText(getBaseContext(),"Input Field is Empty", Toast.LENGTH_LONG).show();
-        }
-        else{
-            String phrase = this.getcount.getText().toString();
-            int spinnerwcount = TextCounter.getcharcount(phrase);
-            String getcount = String.valueOf(spinnerwcount);
-
-            this.getcount.setText((CharSequence) inputresults);
-
-            this.getcount.setText(TextCounter.getcount(phrase));
-        }
 
 
+    
+    public void onclick(View view){
+        Spinner MainSpinner = (Spinner) findViewById(R.id.spinnerwcount);
+        String Text = MainSpinner.getSelectedItem().toString();
 
+        String phrase = this.getcount.getText().toString();
+        boolean emptyphrase= phrase.isEmpty();
 
-    }
-    public abstract class TextValidator implements TextWatcher {
-        private final TextView textView;
-
-        public TextValidator(TextView textView) {
-            this.textView = textView;
-        }
-
-        public abstract void validate(TextView textView, String text);
-
-        @Override
-        final public void afterTextChanged(Editable s) {
-            String text = textView.getText().toString();
-            validate(textView, text);
+        
+        if (!emptyphrase) {
+            if (Text.equals("Words")) {
+                int WordCount = TextCounter.getwordcount(phrase);
+                String formattedResult = String.valueOf(WordCount);
+                this.inputresults.setText(formattedResult);
+            } else if (Text.equals("Characters")) {
+                int CharacterCount = TextCounter.getcharcount(phrase);
+                String formattedResult = String.valueOf(CharacterCount);
+                this.inputresults.setText(formattedResult);
+            }
+        } else {
+            Toast.makeText(this,"Please input a phrase",Toast.LENGTH_LONG).show();
         }
 
-        @Override
-        final public void beforeTextChanged(CharSequence s, int start, int count, int after) { /* Don't care */ }
 
-        @Override
-        final public void onTextChanged(CharSequence s, int start, int before, int count) { /* Don't care */ }
+
 
 
 
 
     }
 
-}
+
+
+
+    }
+
+

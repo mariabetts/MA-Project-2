@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">MA Project 2</string>
     <string name="btn_input_name">Calculate the Count</string>
-
+    <string name="CharactersPicked">Characters</string>
+    <string name="WordsPicked">Words</string>
     <string-array name="countarray_array">
-        <item>Words</item>
         <item>Characters</item>
+        <item>Words</item>
     </string-array>
 </resources>

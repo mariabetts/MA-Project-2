@@ -10,39 +10,40 @@
         android:id="@+id/spinnerwcount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBottomOf="@+id/wordcount"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="449dp"
-        app:layout_constraintBaseline_toBottomOf="@+id/wordcount"/>
+        tools:layout_editor_absoluteY="606dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btncount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:onClick="onBtnclick"
-        android:text="@string/btn_input_name"
+        android:layout_marginTop="424dp"
+        android:onClick="onclick"
+        android:text="Calculate results"
         app:layout_constraintTop_toBottomOf="@+id/spinnerwcount"
-        tools:layout_editor_absoluteX="100dp" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="279dp" />
 
     <EditText
         android:id="@+id/wordcount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="208dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="129dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerwcount"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="240dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/wordcount"
-        app:layout_constraintTop_toBottomOf="@+id/FinalResults"
-        tools:ignore="UnknownId"
-        tools:layout_editor_absoluteX="27dp" />
+        android:text="The final results"
+        tools:ignore="MissingConstraints,UnknownId"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="113dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
